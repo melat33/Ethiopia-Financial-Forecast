@@ -1,113 +1,150 @@
-# Ethiopia Financial Inclusion Forecasting
+# Ethiopia Financial Inclusion Forecast
 
-A forecasting system for Ethiopia's digital financial transformation, built for
-Selam Analytics' consortium of stakeholders (development finance institutions,
-mobile money operators, the National Bank of Ethiopia). Forecasts the two
-Global Findex pillars -- **Access** (Account Ownership Rate) and **Usage**
-(Digital Payment Adoption Rate) -- for 2025-2027, and models how policies,
-product launches, and infrastructure investments drive those outcomes.
+**Forecasting Ethiopia's digital financial transformation — built for a
+consortium of development finance institutions, mobile money operators, and
+the National Bank of Ethiopia.**
 
-## Quickstart
+[![Live App](https://img.shields.io/badge/Live%20App-vercel-black?logo=vercel)](https://ethiopia-financial-forecast.vercel.app/)
+[![API](https://img.shields.io/badge/API-FastAPI%20on%20Render-009485?logo=fastapi)](https://ethiopia-financial-forecast.onrender.com/docs)
+[![Tests](https://img.shields.io/badge/tests-10%2F10%20passing-brightgreen)](./tests)
+[![React](https://img.shields.io/badge/frontend-React%20%2B%20Vite-61DAFB?logo=react)](./frontend)
+[![FastAPI](https://img.shields.io/badge/backend-FastAPI-009485)](./backend)
+
+**[→ Live Dashboard](https://ethiopia-financial-forecast.vercel.app/)** · **[→ API Docs (Swagger)](https://ethiopia-financial-forecast.onrender.com/docs)**
+
+> The API is on Render's free tier and sleeps after 15 minutes idle — the
+> first load after inactivity can take 30-50s to wake up. The dashboard
+> itself never breaks while this happens: it automatically falls back to
+> bundled data snapshots, so every page still renders instantly either way.
+
+---
+
+## The problem
+
+Ethiopia's digital financial system grew explosively — Telebirr passed 54
+million users, M-Pesa entered the market in 2023, and P2P digital transfers
+recently overtook ATM cash withdrawals for the first time. Yet Global Findex
+data shows account ownership grew only **+3 percentage points** between 2021
+and 2024, a sharp deceleration from the +11pp and +13pp gains of prior
+rounds. The consortium needed to know: what's actually driving inclusion,
+and where is it headed through 2027?
+
+## What this project delivers
+
+An end-to-end forecasting system — not just charts, a full pipeline with a
+validated model behind it:
+
+- **Enriched dataset**: the starter data had zero `impact_link` records
+  connecting events to outcomes and no observation for the Usage/digital
+  payment forecast target. Both gaps were identified, sourced, and closed —
+  documented line-by-line in [`data_enrichment_log.md`](./data_enrichment_log.md).
+- **A validated causal model, not just a fitted curve**: the event-impact
+  model's estimate for Telebirr + M-Pesa's effect on mobile money adoption
+  (9.14%) lands **0.31 percentage points** from the actual observed 2024
+  figure (9.45%) — checked against real data, not asserted.
+- **Honest forecasting**: base-case Access is projected at **54.6% for
+  2025**, a **15.4pp shortfall** against the NFIS-II policy target of 70%.
+  Where the model rests on unvalidated, forward-looking assumptions (events
+  that launched in 2024-2025 with no post-period data yet), that's flagged
+  explicitly rather than hidden behind a confident-looking number.
+- **A real product, not a notebook**: FastAPI backend, React dashboard with
+  a custom design system, deployed and live at the links above.
+
+## Key findings
+
+| Question | Finding |
+|---|---|
+| Why did Access grow only +3pp despite 65M+ mobile money accounts opened? | Ethiopia has almost no mobile-money-only users (~0.5%) — most new registrants were already banked, so registration growth doesn't convert 1:1 into new Findex "account owners." |
+| Does the model's estimate match reality? | Yes — validated against the one clear historical test case (Telebirr + M-Pesa's mobile money effect): **0.31pp off** the observed figure. |
+| Where's Ethiopia headed by 2027? | Base case: still **~15pp short** of the NFIS-II 70% Access target. The largest-impact levers (Fayda digital ID, M-Pesa/EthSwitch interoperability, EthioPay) are all too recent to have validating data yet — genuine uncertainty, not model weakness. |
+| What closed the gender gap? | Almost nothing — 20pp (2021) → 18pp (2024). Mobile money expansion hasn't meaningfully reached Ethiopia's gender inclusion divide. |
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Unified Dataset\nCSV, schema-validated] --> B[src/ pipeline\ndata_loader · eda · event_impact · forecasting]
+    B --> C[FastAPI backend\n8 JSON endpoints]
+    B -.generates.-> D[Static JSON snapshots\nfrontend/public/data]
+    C --> E[React + Vite + Tailwind\ndashboard]
+    D -.fallback if API unreachable.-> E
+    E --> F((Deployed on Vercel))
+    C --> G((Deployed on Render))
+```
+
+The frontend never hard-depends on the backend being awake — it tries the
+live API first and transparently falls back to static snapshots generated
+by the same pipeline. That's a deliberate reliability choice for a
+free-tier deployment, not an accident.
+
+## Tech stack
+
+| Layer | Choice | Why |
+|---|---|---|
+| Data & modeling | Python, pandas, numpy | Schema-validated ETL, logistic-ramp event-effect model, OLS trend + scenario forecasting |
+| API | FastAPI, uvicorn | Typed, auto-documented (`/docs`), thin wrapper over a tested `src/` pipeline — no logic duplicated between notebook and API |
+| Frontend | React, Vite, Tailwind v4, Recharts | Custom design system (not defaults) — navy/gold/teal "financial terminal" register suited to a DFI/central-bank audience |
+| Testing | pytest, GitHub Actions CI | 10 tests covering schema validation, model tolerance, forecast sanity (CI ordering, scenario monotonicity) |
+| Deployment | Render (API) + Vercel (frontend) | `render.yaml` Blueprint for reproducible backend deploys; static-fallback frontend for zero-cold-start demo reliability |
+
+## What this project demonstrates
+
+- **Data engineering under real gaps**: identifying missing data (not just
+  cleaning what's given), sourcing it defensibly, and documenting every
+  addition with confidence levels and evidence basis.
+- **Modeling discipline**: catching and fixing a real double-counting bug
+  during development (event effects being counted both in the historical
+  trend *and* added again), then validating the corrected model against
+  held-out reality rather than trusting the math on faith.
+- **Full-stack ownership**: same person who built the forecasting model
+  built the API contract and the production UI consuming it — no hand-off
+  gaps, no mismatched assumptions between layers.
+- **Production judgment**: caught a missing dependency that would have
+  silently broken the live deploy (`matplotlib` imported at module level in
+  a file the API depends on, but never installed on the backend) — fixed by
+  making the import lazy rather than papering over it with an unnecessary
+  dependency.
+
+## Quickstart (local development)
 
 ```bash
+git clone https://github.com/melat33/Ethiopia-Financial-Forecast
+cd Ethiopia-Financial-Forecast
 pip install -r requirements.txt
 
-# Run the analytical pipeline (Tasks 1-4)
-python src/data_loader.py      # load + schema-validate the unified dataset
-python src/eda.py              # coverage summary, 5 key insights, figures -> reports/figures/
-python src/event_impact.py     # event x indicator association matrix + Telebirr validation
-python src/forecasting.py      # forecast table (base/optimistic/pessimistic, 2025-2027)
-
-# Run tests
+# Run the analytical pipeline
+python src/data_loader.py
+python src/eda.py
+python src/event_impact.py
+python src/forecasting.py
 pytest tests/ -v
 
-# Dashboard (Task 5) — FastAPI backend + React frontend
+# Run the dashboard locally
 cd backend && pip install -r requirements.txt && uvicorn main:app --reload --port 8000
-# in a second terminal:
 cd frontend && npm install && npm run dev   # http://localhost:5173
 ```
 
-The frontend works even without the backend running (falls back to static
-JSON snapshots in `frontend/public/data/`) — useful for a Vercel-only demo
-deploy. See `frontend/README.md` for the design system and deploy notes.
+Full deployment instructions (Render + Vercel, one-click Blueprint, CORS
+hardening) are in [`DEPLOYMENT.md`](./DEPLOYMENT.md).
 
-## Project Structure
+## Project structure
+├── data/               # raw (source) + processed (generated) datasets
+├── src/                # data_loader, eda, event_impact, forecasting
+├── backend/             # FastAPI — wraps src/ as JSON endpoints
+├── frontend/            # React + Vite + Tailwind dashboard
+├── notebooks/           # executed walkthroughs, one per task
+├── tests/                # 10 tests, run in CI on every push
+├── reports/              # methodology, limitations, generated figures
+└── data_enrichment_log.md
+## Methodology, assumptions, and limitations
 
-```
-ethiopia-fi-forecast/
-├── data/
-│   ├── raw/                          # ethiopia_fi_unified_data.csv, reference_codes.csv
-│   └── processed/                    # event_indicator_matrix.csv, forecast_table.csv (generated)
-├── src/
-│   ├── data_loader.py                # load, dtype, schema-validate the unified dataset
-│   ├── eda.py                        # coverage, trends, gender gap, event overlays, 5 insights
-│   ├── event_impact.py               # association matrix + lagged event-effect model
-│   └── forecasting.py                # trend + event-augmented forecasts, 3 scenarios, CIs
-├── backend/
-│   ├── main.py                       # FastAPI: wraps src/ pipeline as 8 JSON endpoints
-│   └── requirements.txt
-├── frontend/                         # React + Vite + Tailwind v4 dashboard (see its README)
-│   ├── src/
-│   │   ├── components/               # Sidebar, LedgerStrip, Panel, MetricCard, Loading, ErrorState
-│   │   ├── pages/                    # Overview, Trends, Forecasts, Projections
-│   │   └── lib/api.js                # live backend + static-fallback data client
-│   └── public/data/                  # static JSON snapshots (fallback / offline demo)
-├── notebooks/                        # 01-04, executed with real outputs, mirror src/ modules
-├── tests/
-│   └── test_pipeline.py              # 10 tests covering schema, model validation, forecast sanity
-├── reports/
-│   ├── figures/                      # generated PNGs (access trajectory, event overlays)
-│   └── impact_links_methodology.md   # evidence basis + limitations for every impact_link
-└── data_enrichment_log.md            # documents every record added beyond the starter dataset
-```
+Every event-impact estimate is tagged with its evidence basis (`empirical`,
+`literature`, `theoretical`, or `expert` judgment) and every number is
+traceable to either an observed data delta or a named comparable-market
+precedent — see [`reports/impact_links_methodology.md`](./reports/impact_links_methodology.md)
+for the full breakdown, including what's confidently known versus what's a
+scenario assumption still waiting on 2025-2027 data to validate.
 
-## What the model does
+---
 
-1. **Data layer** (`data_loader.py`) -- loads the unified `record_type` schema
-   (`observation` / `target` / `event` / `impact_link`) and validates every
-   categorical field against `reference_codes.csv`.
-2. **EDA** (`eda.py`) -- coverage and confidence summaries, the Access
-   trajectory (2011-2024), event-timeline overlays, and five data-grounded
-   insights (e.g. why +65M mobile money accounts produced only +3pp Access
-   growth).
-3. **Event impact model** (`event_impact.py`) -- turns `impact_link` records
-   into an event x indicator association matrix, and an `event_effect_at()`
-   function that ramps each event's effect in via a logistic curve centered
-   on `event_date + lag_months`. **Validated**: the modeled Telebirr + M-Pesa
-   effect on mobile money account ownership lands within 0.3pp of the actual
-   2024 Findex figure (9.14% modeled vs. 9.45% observed).
-4. **Forecasting** (`forecasting.py`) -- baseline trend regression (OLS on
-   Findex survey points) plus the *incremental* event effect accrued after
-   the last observation (explicitly avoids double-counting events already
-   reflected in the historical trend). Three scenarios scale the event
-   contribution 0.5x/1.0x/1.5x; confidence intervals widen with horizon.
-5. **Dashboard** (`dashboard/app.py`) -- 4 pages, 4+ interactive Plotly
-   visualizations, CSV downloads, and a scenario selector against the
-   NFIS-II 70% Access target.
-
-## Key findings (see `reports/impact_links_methodology.md` for full detail)
-
-- Account ownership growth decelerated sharply (+13pp, +11pp, then only +3pp
-  in the most recent Findex round) despite mobile money accounts more than
-  doubling -- explained by Ethiopia's near-zero mobile-money-only user rate,
-  so most new registrants were already banked.
-- Base-case 2025 Access forecast (54.6%) falls **~15pp short** of the
-  NFIS-II 70% target.
-- The largest-magnitude modeled events (Fayda ID, M-Pesa/EthSwitch
-  interoperability, EthioPay) all launched in 2024-2025 with no post-period
-  Findex data yet -- 2026-2027 forecasts lean heavily on literature-based,
-  not empirically validated, event effects. Treat the optimistic/pessimistic
-  spread as the honest range, not the base case as a confident point estimate.
-
-## Known data gaps / next steps
-
-- `USG_DIGITAL_PAYMENT` (the Usage forecast target) has only **one**
-  historical observation (35%, 2024) -- there is no fitted trend, only a
-  flat-line fallback (flagged in the dashboard and in `forecast_table.csv`
-  via `trend_is_single_point_fallback`). Sourcing a 2021 or earlier
-  digital-payment figure from Findex microdata would materially improve
-  this forecast.
-- Urban/rural disaggregation and Sheets B-D of the enrichment guide
-  (agent density, POS terminals, smartphone penetration, etc.) were not
-  yet incorporated -- see `data_enrichment_log.md` for what's included
-  vs. still open.
+Built by **Melat** — AI/ML engineering, 
