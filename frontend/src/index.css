@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color tokens ---- */
+  --color-ink: #0E1B2A;        /* primary canvas — deep navy */
+  --color-panel: #142437;      /* card / panel surface on canvas */
+  --color-panel-raised: #1B2E45;
+  --color-hairline: #2A3D54;   /* borders, ledger rules */
+  --color-paper: #F5F1E8;      /* warm off-white — primary text on dark, light-surface bg */
+  --color-paper-dim: #B9C2CC;  /* secondary text on dark */
+  --color-gold: #C9A227;       /* Access pillar accent */
+  --color-gold-dim: #8A7226;
+  --color-teal: #2FA89C;       /* Usage pillar accent */
+  --color-teal-dim: #1F6F67;
+  --color-coral: #E4572E;      /* alerts, gaps, pessimistic */
+
+  /* ---- Type ---- */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html {
+  background: var(--color-ink);
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* visible keyboard focus everywhere, per accessibility floor */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* thin scrollbar to match the ledger-rule aesthetic */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: var(--color-hairline); border-radius: 4px; }
