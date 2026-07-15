@@ -12,10 +12,13 @@ the National Bank of Ethiopia.**
 
 **[→ Live Dashboard](https://ethiopia-financial-forecast.vercel.app/)** · **[→ API Docs (Swagger)](https://ethiopia-financial-forecast.onrender.com/docs)**
 
-> The API is on Render's free tier and sleeps after 15 minutes idle — the
-> first load after inactivity can take 30-50s to wake up. The dashboard
-> itself never breaks while this happens: it automatically falls back to
-> bundled data snapshots, so every page still renders instantly either way.
+> T![Ethiopia Financial Inclusion Dashboard — Overview](./docs/screenshot.png)
+
+<p align="center">
+  <img src="./docs/screenshot-trends.png" width="32%" />
+  <img src="./docs/screenshot-forecast.png" width="32%" />
+  <img src="./docs/screenshot-projections.png" width="32%" />
+</p>
 
 ---
 
