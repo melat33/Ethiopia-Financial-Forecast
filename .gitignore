@@ -7,4 +7,3 @@ venv/
 .streamlit/
 *.egg-info/
 .DS_Store
-data/
