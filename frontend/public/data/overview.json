@@ -1,0 +1,23 @@
+{
+  "access": {
+    "current": 49.0,
+    "year": 2024,
+    "delta": 3.0,
+    "prev_year": 2021
+  },
+  "mobile_money": {
+    "current": 9.45,
+    "delta": 4.749999999999999
+  },
+  "crossover_ratio": 1.0754400670578375,
+  "target_2025": 70.0,
+  "base_forecast_2025": 54.61,
+  "gap_pp": 15.39,
+  "insights": [
+    "Account ownership growth decelerated sharply in the most recent survey round: +13pp (2014-17), +11pp (2017-21), but only +3pp (2021-24), despite mobile money accounts more than doubling (4.7% -> 9.4%) over the same window.",
+    "The registration-to-Access gap is explained by Ethiopia's market structure: mobile-money-only users are rare (~0.5%), so most new mobile money registrants already had a bank account -- registrations do not convert 1:1 into new account owners in the Findex sense.",
+    "The gender gap in account ownership narrowed only marginally (20pp in 2021 to 18pp in 2024), suggesting mobile money expansion has not yet meaningfully closed Ethiopia's financial inclusion gender divide.",
+    "P2P digital transfers surpassed ATM cash withdrawals in volume for the first time in FY2024/25 (128.3M P2P transactions vs. 119.3M ATM transactions), a structural shift toward digital-first payment behavior even though survey-measured Access growth has stalled.",
+    "Nearly all of the largest-magnitude events in the impact model (Fayda ID, M-Pesa/EthSwitch interoperability, EthioPay) launched in 2024-2025 and have no post-period Findex data yet -- meaning the true drivers of 2025-2027 Access growth are still forward-looking assumptions, not validated historical effects."
+  ]
+}

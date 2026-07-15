@@ -1,0 +1,115 @@
+{
+  "events": [
+    "EthioPay Instant Payment System Launch",
+    "Fayda Digital ID Program Rollout",
+    "Foreign Exchange Liberalization",
+    "M-Pesa EthSwitch Integration",
+    "M-Pesa Ethiopia Launch",
+    "NFIS-II Strategy Launch",
+    "Safaricom Ethiopia Commercial Launch",
+    "Safaricom Ethiopia Price Increase",
+    "Telebirr Launch"
+  ],
+  "indicators": [
+    "ACC_MM_ACCOUNT",
+    "ACC_MOBILE_PEN",
+    "ACC_OWNERSHIP",
+    "USG_DIGITAL_PAYMENT",
+    "USG_MPESA_ACTIVE",
+    "USG_MPESA_USERS",
+    "USG_P2P_COUNT",
+    "USG_P2P_VALUE"
+  ],
+  "values": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      10.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      8.0,
+      0.0,
+      15.0,
+      0.0
+    ],
+    [
+      1.2,
+      0.0,
+      0.3,
+      2.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -5.0,
+      0.0,
+      0.0
+    ],
+    [
+      3.5,
+      0.0,
+      0.8,
+      9.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ]
+}

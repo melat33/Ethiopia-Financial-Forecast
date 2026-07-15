@@ -1,0 +1,71 @@
+{
+  "indicator_code": "GEN_GAP_ACC",
+  "series": [
+    {
+      "date": "2021-12-31",
+      "year": 2021,
+      "value": 20.0,
+      "confidence": "high",
+      "source": "Global Findex 2021"
+    },
+    {
+      "date": "2024-11-29",
+      "year": 2024,
+      "value": 18.0,
+      "confidence": "medium",
+      "source": "Global Findex 2024"
+    }
+  ],
+  "events": [
+    {
+      "name": "Telebirr Launch",
+      "date": "2021-05-17",
+      "category": "product_launch"
+    },
+    {
+      "name": "NFIS-II Strategy Launch",
+      "date": "2021-09-01",
+      "category": "policy"
+    },
+    {
+      "name": "Safaricom Ethiopia Commercial Launch",
+      "date": "2022-08-01",
+      "category": "market_entry"
+    },
+    {
+      "name": "M-Pesa Ethiopia Launch",
+      "date": "2023-08-01",
+      "category": "product_launch"
+    },
+    {
+      "name": "Fayda Digital ID Program Rollout",
+      "date": "2024-01-01",
+      "category": "infrastructure"
+    },
+    {
+      "name": "Foreign Exchange Liberalization",
+      "date": "2024-07-29",
+      "category": "policy"
+    },
+    {
+      "name": "P2P Transaction Count Surpasses ATM",
+      "date": "2024-10-01",
+      "category": "milestone"
+    },
+    {
+      "name": "M-Pesa EthSwitch Integration",
+      "date": "2025-10-27",
+      "category": "partnership"
+    },
+    {
+      "name": "Safaricom Ethiopia Price Increase",
+      "date": "2025-12-15",
+      "category": "pricing"
+    },
+    {
+      "name": "EthioPay Instant Payment System Launch",
+      "date": "2025-12-18",
+      "category": "infrastructure"
+    }
+  ]
+}

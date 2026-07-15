@@ -1,0 +1,200 @@
+[
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2025,
+    "scenario": "pessimistic",
+    "trend_only": 54.24,
+    "event_contribution": 0.19,
+    "forecast": 54.43,
+    "ci_low": 52.93,
+    "ci_high": 55.93,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2025,
+    "scenario": "base",
+    "trend_only": 54.24,
+    "event_contribution": 0.37,
+    "forecast": 54.61,
+    "ci_low": 53.11,
+    "ci_high": 56.11,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2025,
+    "scenario": "optimistic",
+    "trend_only": 54.24,
+    "event_contribution": 0.56,
+    "forecast": 54.8,
+    "ci_low": 53.3,
+    "ci_high": 56.3,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2026,
+    "scenario": "pessimistic",
+    "trend_only": 56.95,
+    "event_contribution": 0.76,
+    "forecast": 57.71,
+    "ci_low": 54.71,
+    "ci_high": 60.71,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2026,
+    "scenario": "base",
+    "trend_only": 56.95,
+    "event_contribution": 1.52,
+    "forecast": 58.47,
+    "ci_low": 55.47,
+    "ci_high": 61.47,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2026,
+    "scenario": "optimistic",
+    "trend_only": 56.95,
+    "event_contribution": 2.28,
+    "forecast": 59.23,
+    "ci_low": 56.23,
+    "ci_high": 62.23,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2027,
+    "scenario": "pessimistic",
+    "trend_only": 59.66,
+    "event_contribution": 0.85,
+    "forecast": 60.51,
+    "ci_low": 56.01,
+    "ci_high": 65.01,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2027,
+    "scenario": "base",
+    "trend_only": 59.66,
+    "event_contribution": 1.7,
+    "forecast": 61.36,
+    "ci_low": 56.86,
+    "ci_high": 65.86,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "ACC_OWNERSHIP",
+    "year": 2027,
+    "scenario": "optimistic",
+    "trend_only": 59.66,
+    "event_contribution": 2.55,
+    "forecast": 62.21,
+    "ci_low": 57.71,
+    "ci_high": 66.71,
+    "trend_is_single_point_fallback": false
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2025,
+    "scenario": "pessimistic",
+    "trend_only": 35.0,
+    "event_contribution": 0.92,
+    "forecast": 35.92,
+    "ci_low": 32.92,
+    "ci_high": 38.92,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2025,
+    "scenario": "base",
+    "trend_only": 35.0,
+    "event_contribution": 1.85,
+    "forecast": 36.85,
+    "ci_low": 33.85,
+    "ci_high": 39.85,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2025,
+    "scenario": "optimistic",
+    "trend_only": 35.0,
+    "event_contribution": 2.77,
+    "forecast": 37.78,
+    "ci_low": 34.78,
+    "ci_high": 40.78,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2026,
+    "scenario": "pessimistic",
+    "trend_only": 35.0,
+    "event_contribution": 1.87,
+    "forecast": 36.87,
+    "ci_low": 30.87,
+    "ci_high": 42.87,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2026,
+    "scenario": "base",
+    "trend_only": 35.0,
+    "event_contribution": 3.74,
+    "forecast": 38.74,
+    "ci_low": 32.74,
+    "ci_high": 44.74,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2026,
+    "scenario": "optimistic",
+    "trend_only": 35.0,
+    "event_contribution": 5.61,
+    "forecast": 40.61,
+    "ci_low": 34.61,
+    "ci_high": 46.61,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2027,
+    "scenario": "pessimistic",
+    "trend_only": 35.0,
+    "event_contribution": 2.38,
+    "forecast": 37.38,
+    "ci_low": 28.38,
+    "ci_high": 46.38,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2027,
+    "scenario": "base",
+    "trend_only": 35.0,
+    "event_contribution": 4.76,
+    "forecast": 39.76,
+    "ci_low": 30.76,
+    "ci_high": 48.76,
+    "trend_is_single_point_fallback": true
+  },
+  {
+    "indicator_code": "USG_DIGITAL_PAYMENT",
+    "year": 2027,
+    "scenario": "optimistic",
+    "trend_only": 35.0,
+    "event_contribution": 7.14,
+    "forecast": 42.14,
+    "ci_low": 33.14,
+    "ci_high": 51.14,
+    "trend_is_single_point_fallback": true
+  }
+]

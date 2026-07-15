@@ -1,0 +1,12 @@
+[
+  {
+    "date": "2021-12-31",
+    "gender": "male",
+    "value": 56.0
+  },
+  {
+    "date": "2021-12-31",
+    "gender": "female",
+    "value": 36.0
+  }
+]
