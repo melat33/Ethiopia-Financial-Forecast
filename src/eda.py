@@ -8,9 +8,6 @@ or the dashboard without recomputation.
 from __future__ import annotations
 from pathlib import Path
 import pandas as pd
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 
 from data_loader import load_unified_data, get_indicator_series
 
@@ -34,7 +31,10 @@ def temporal_coverage(df: pd.DataFrame) -> pd.DataFrame:
                             aggfunc="count", fill_value=0)
 
 
-def plot_access_trajectory(df: pd.DataFrame, save: bool = True) -> plt.Figure:
+def plot_access_trajectory(df: pd.DataFrame, save: bool = True) -> "plt.Figure":
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
     s = get_indicator_series(df, "ACC_OWNERSHIP")
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.plot(s["observation_date"], s["value_numeric"], marker="o", linewidth=2, color="#1f6feb")
@@ -50,7 +50,10 @@ def plot_access_trajectory(df: pd.DataFrame, save: bool = True) -> plt.Figure:
     return fig
 
 
-def plot_event_overlay(df: pd.DataFrame, indicator_code: str, save: bool = True) -> plt.Figure:
+def plot_event_overlay(df: pd.DataFrame, indicator_code: str, save: bool = True) -> "plt.Figure":
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
     s = get_indicator_series(df, indicator_code)
     events = df[df["record_type"] == "event"].sort_values("observation_date")
     fig, ax = plt.subplots(figsize=(10, 5))
